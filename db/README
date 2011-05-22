@@ -1,0 +1,31 @@
+Scripts for setting up / tearing down MySQL database for the Asphodel game.
+
+All scripts are expected to run within a database named 'Asphodel'.
+
+Three key, overall scripts are:
+
+ - create_all.sql
+
+Creates all the tables for the game, in proper order w/ foreign keys and the
+like.  Does this by sourcing distinct sql files for each table (or
+closely-linked set of tables).  
+
+If you create new tables, create files for them in this directory and add
+them to creatre_all.sql.
+
+
+ - drop_all.sql
+
+This drops all the tables created above, in proper order w/ respect to
+foreign keys and the like (which, in general, is just the reverse order they
+were created in).  Unlike create_all, this directly names the tables it
+drops (for reasons of simplicity).
+
+If you create new tables, add drop statements for them to drop_all.sql, in
+proper order w/r/t foreign keys.
+
+
+ - nuke_rebuild.sql
+
+This just runs drop_all.sql followed by create_all.sql.  Obviously, use with
+care.

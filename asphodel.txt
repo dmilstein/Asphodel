@@ -1,0 +1,38 @@
+-*-outline-*-
+
+* x Set up Tornado
+** Try out pip (but no demo apps, then)
+Okay, that worked to create a hello, world app, now what?
+
+Interestingly, db is sync, here's why (from, I think, The Man @ FriendFeed):
+		
+Bret Taylor  	
+View profile  
+  (1 user)  More options Sep 10 2009, 8:22 pm
+We experimented with different async DB approaches, but settled on 
+synchronous at FriendFeed because generally if our DB queries were 
+backlogging our requests, our backends couldn't scale to the load 
+anyway. Things that were slow enough were abstracted to separate 
+backend services which we fetched asynchronously via the async HTTP 
+module. 
+
+I may open source the async MySQL client I wrote, but I am still 
+skeptical of the long term value given the code complexity it 
+introduces. 
+Bret 
+
+* Create schema for game, planets, players
+** x users (actual people playing)
+** x games
+** x planets
+** x players (a link between a person and a game)
+* Set up local git repo
+* Commit everything there
+* Create git repo on Owen's machine
+* Push my code to that repo
+* Hook up web page to list current games
+* Email Owen + Parker 
+** remind them to use home address
+** Pass on any code
+** 'Asphodel' for now
+* 
