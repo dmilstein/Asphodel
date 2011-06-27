@@ -15,7 +15,7 @@ We experimented with different async DB approaches, but settled on synchronous a
 I may open source the async MySQL client I wrote, but I am still skeptical of the long term value given the code complexity it introduces.  Bret
 
 * x Create schema for game, planets, players
-** x users (actual people playing)
+** x users (actual people playing) # https://docs.djangoproject.com/en/dev/topics/auth/
 ** x games
 ** x planets
 ** x players (a link between a person and a game)
