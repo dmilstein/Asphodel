@@ -1,39 +1,10 @@
 -*-outline-*-
 
-* x Set up Tornado
-** Try out pip (but no demo apps, then)
-Okay, that worked to create a hello, world app, now what?
-
-Interestingly, db is sync, here's why (from, I think, The Man @ FriendFeed):
-		
-Bret Taylor  	
-View profile  
-  (1 user)  More options Sep 10 2009, 8:22 pm
-
-We experimented with different async DB approaches, but settled on synchronous at FriendFeed because generally if our DB queries were backlogging our requests, our backends couldn't scale to the load anyway. Things that were slow enough were abstracted to separate backend services which we fetched asynchronously via the async HTTP module.
-
-I may open source the async MySQL client I wrote, but I am still skeptical of the long term value given the code complexity it introduces.  Bret
-
-* x Create schema for game, planets, players
-** x users (actual people playing) # https://docs.djangoproject.com/en/dev/topics/auth/
-** x games
-** x planets
-** x players (a link between a person and a game)
-* x Set up local git repo
-* x Commit everything there
-* x Email Owen + Parker 
-** x remind them to use home address
-** x Pass on any code
-** x 'Asphodel' for now
-* Create git repo on Owen's machine
-Okay, that looks hard, 'cause I don't know how to login
-** Push my code to that repo
-*** Tar up the current directory
-*** Copy that to smokey
-*** Move cur directory to backup
-*** Then clone it back down
-(need to start git daemon?  Or use ssh?)
-*** Tell Owen + Parker (group/write privs)
-* Hook up web page to list current games
-
-
+* x Add x/y loc to models
+* x sync the db
+* check the admin interface?
+* commit to git
+* write a view to display planets in a given game
+* commit + push
+* create a field of planets via some init
+* build paths between stars

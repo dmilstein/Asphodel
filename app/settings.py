@@ -1,5 +1,7 @@
 # Django settings for app project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 

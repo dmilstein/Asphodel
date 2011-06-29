@@ -14,5 +14,7 @@ class Player(models.Model):
 class Planet(models.Model):
     game = models.ForeignKey(Game)
     name = models.CharField(max_length=40)
+    x_location = models.IntegerField()
+    y_location = models.IntegerField()
     # more stats
 
