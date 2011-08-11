@@ -10,10 +10,10 @@ def main():
     galaxies = [homeA, homeB, hub, goldmineA, goldmineB]
 
     bridges = [
-            BridgeSpec(2, homeA, hub),
-            BridgeSpec(2, homeB, hub),
-            BridgeSpec(4, goldmineA, hub),
-            BridgeSpec(4, goldmineB, hub),
+            BridgeSpec(2, 2, homeA, hub),
+            BridgeSpec(2, 2, homeB, hub),
+            BridgeSpec(3, 4, goldmineA, hub),
+            BridgeSpec(3, 4, goldmineB, hub),
             ]
 
     universe_spec = UniverseSpec(galaxies, bridges)

@@ -25,8 +25,9 @@ class BridgeSpec(object):
         - hops: how many planets are in the bridge?
         - galaxies_to_link: a list of all the galaxies being connected
     """
-    def __init__(self, hops, galaxy_a, galaxy_b):
+    def __init__(self, hops, extra_systems, galaxy_a, galaxy_b):
         self.hops = hops
+        self.extra_systems = extra_systems
         self.galaxies_to_link = [galaxy_a, galaxy_b]
 
 class UniverseSpec(object):
@@ -115,6 +116,12 @@ class UniverseGenerator(object):
             next_system = self.generate_system(bridge_avg, bridge_spread)
             lanes.append(StarLane(next_system, systems[-1]))
             systems.append(next_system)
+
+        # Bridge systems have some dead ends
+        for i in range(spec.extra_systems):
+            extra_system = self.generate_system(bridge_avg, bridge_spread)
+            lanes.append(StarLane(extra_system, random.choice(systems)))
+            systems.append(extra_system)
 
         # TODO: Support more than two galaxy connections per bridge?
         lanes.append(StarLane(
