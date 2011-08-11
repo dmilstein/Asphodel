@@ -1,11 +1,12 @@
 from gen_map import UniverseGenerator, UniverseSpec, GalaxySpec, BridgeSpec
+from render import render_universe
 
 def main():
-    homeA = GalaxySpec(4, 1, 24, 10)
-    homeB = GalaxySpec(4, 1, 24, 10)
-    hub = GalaxySpec(9, 3, 15, 5)
-    goldmineA = GalaxySpec(6, 2, 36, 20)
-    goldmineB = GalaxySpec(6, 2, 42, 14)
+    homeA = GalaxySpec("Red", 4, 1, 24, 10)
+    homeB = GalaxySpec("Blue", 4, 1, 24, 10)
+    hub = GalaxySpec("Hub", 9, 3, 15, 5)
+    goldmineA = GalaxySpec("Alpha", 6, 2, 36, 20)
+    goldmineB = GalaxySpec("Omega", 6, 2, 42, 14)
     galaxies = [homeA, homeB, hub, goldmineA, goldmineB]
 
     bridges = [
@@ -19,8 +20,8 @@ def main():
 
     generator = UniverseGenerator()
     universe = generator.generate_universe(universe_spec)
-    import pdb;  pdb.set_trace()
-
+    with open('universe.dot', 'w') as f:
+        f.write(render_universe(universe))
 
 if __name__ == '__main__':
     main()
