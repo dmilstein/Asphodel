@@ -1,7 +1,7 @@
 import random
 import string
 
-from nodes import System, StarLane, Universe
+from nodes import System, StarLane, Galaxy, Universe
 
 class GalaxySpec(object):
     """
@@ -18,15 +18,6 @@ class GalaxySpec(object):
         self.value_avg = value_avg
         self.value_spread = value_spread
         self.connectivity = connectivity
-
-class Galaxy(object):
-    """
-    A collection of systems and star lanes
-    """
-    def __init__(self, name, systems, lanes):
-        self.systems = systems
-        self.lanes = lanes
-        self.name = name
 
 class BridgeSpec(object):
     """
@@ -49,26 +40,21 @@ class UniverseSpec(object):
 class UniverseGenerator(object):
     """Holds some state about a generated universe"""
     def __init__(self):
-        self.names_used = set([''])
+        with open('star_names.txt') as f:
+            self.name_pool = map(str.strip, f.readlines())
+        random.shuffle(self.name_pool)
 
     def random_name(self):
-        letters = list(string.ascii_uppercase)
-        name = ''
-        while name in self.names_used:
-            length = random.randint(1, 3)
-            random.shuffle(letters)
-            name = ''.join(letters[:length])
+        if not self.name_pool: # just in case
+            return random.choice(string.ascii_uppercase)
 
-        self.names_used.add(name)
-        return name
+        return self.name_pool.pop()
 
-    def generate_system(self, galaxy_name, value_avg, value_spread):
+    def generate_system(self, value_avg, value_spread):
         """Returns a random star system"""
         population = max(0, random.randint(value_avg - value_spread, value_avg + value_spread))
 
         name = self.random_name()
-        if galaxy_name:
-            name = "%s-%s" % (galaxy_name, name)
 
         return System(name, population)
 
@@ -109,20 +95,24 @@ class UniverseGenerator(object):
 
 
     def generate_galaxy(self, spec):
-        systems = [self.generate_system(spec.name, spec.value_avg, spec.value_spread)
+        systems = [self.generate_system(spec.value_avg, spec.value_spread)
                 for i in range(spec.systems)]
         lanes = self.connect_systems(systems, spec.connectivity)
 
-        return Galaxy(spec.name, systems, lanes)
+        galaxy = Galaxy(spec.name, systems, lanes)
+        for system in systems:
+            system.galaxy = galaxy
+
+        return galaxy
 
     def generate_bridge(self, spec, galaxy_a, galaxy_b):
         bridge_avg = 1
         bridge_spread = 4 # negative values get corrected to 0 or 1
-        systems = [self.generate_system(None, bridge_avg, bridge_spread)]
+        systems = [self.generate_system(bridge_avg, bridge_spread)]
         lanes = []
 
         for i in range(spec.hops - 1):
-            next_system = self.generate_system(None, bridge_avg, bridge_spread)
+            next_system = self.generate_system(bridge_avg, bridge_spread)
             lanes.append(StarLane(next_system, systems[-1]))
             systems.append(next_system)
 
@@ -132,7 +122,7 @@ class UniverseGenerator(object):
         lanes.append(StarLane(
             systems[-1], random.choice(galaxy_b.systems)))
 
-        return Galaxy("Bridge", systems, lanes)
+        return Galaxy(None, systems, lanes)
 
     def generate_universe(self, spec):
         galaxies = [self.generate_galaxy(galaxy_spec)
@@ -151,17 +141,10 @@ class UniverseGenerator(object):
         return self.link_universe(galaxies + bridges)
 
     def link_universe(self, galaxies):
-        all_systems = []
-        all_lanes = []
-
         for galaxy in galaxies:
-            all_systems.extend(galaxy.systems)
-            all_lanes.extend(galaxy.lanes)
-
-            # link the systems up
             for lane in galaxy.lanes:
                 a, b = lane.systems
                 a.lanes[b] = lane
                 b.lanes[a] = lane
 
-        return Universe(all_systems, all_lanes)
+        return Universe(galaxies)

@@ -7,18 +7,18 @@ _TEMPLATE = """graph universe {
 """
 
 
-and makes an extra effort to avoid edge crossings. For example, the graph
+# and makes an extra effort to avoid edge crossings. For example, the graph
 
-digraph G {
-        /*
-          a [group=X, foo=bar];
-            b [group=X, foo=xxx];
-            */
-              c [foo=bar];
-                a -> b;
-                  c -> b;
-                    d -> b;
-                    }
+#digraph G {
+#        /*
+#          a [group=X, foo=bar];
+#            b [group=X, foo=xxx];
+#            */
+#              c [foo=bar];
+#                a -> b;
+#                  c -> b;
+#                    d -> b;
+#                    }
 
 _SYSTEM_TEMPLATE = """"%(name)s (%(population)s)" -- "%(destination_name)s (%(destination_population)s)";"""
 # possibly add [ label = "1" ]
@@ -27,19 +27,20 @@ _SYSTEM_TEMPLATE = """"%(name)s (%(population)s)" -- "%(destination_name)s (%(de
 def render_universe(universe):
     visited = set()
     systems = []
-    for system in universe.systems:
-        for destination in system.lanes.keys():
-            if (system, destination) in visited:
-                continue
+    for galaxy in universe.galaxies:
+        for system in galaxy.systems:
+            for destination in system.lanes.keys():
+                visit = tuple(sorted([system, destination]))
+                if visit in visited:
+                    continue
+                visited.add(visit)
 
-            visited.add((system, destination))
-            visited.add((destination, system))
-            systems.append(_SYSTEM_TEMPLATE % {
-                'name': system.name,
-                'population': system.population,
-                'destination_name': destination.name,
-                'destination_population': destination.population,
-            })
+                systems.append(_SYSTEM_TEMPLATE % {
+                    'name': system.full_name(),
+                    'population': system.population,
+                    'destination_name': destination.full_name(),
+                    'destination_population': destination.population,
+                })
 
     return _TEMPLATE % {
         'systems': '\n'.join(systems),

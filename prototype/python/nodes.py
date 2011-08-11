@@ -13,14 +13,33 @@ class System(object):
     population determines the resource value of the system.
     """
     def __init__(self, name, population):
+        self.galaxy = None
         self.name = name
         self.population = population
         self.lanes = {} # maps destination planet -> lane
+
+    def full_name(self):
+        if self.galaxy and self.galaxy.name:
+            return "%s %s" % (self.galaxy.name, self.name)
+
+        return self.name
+
+class Galaxy(object):
+    """A galaxy is a loose grouping of star systems"""
+    def __init__(self, name, systems, lanes):
+        self.name = name
+        self.systems = systems
+        self.lanes = lanes
 
 class Universe(object):
     """
     The game universe. Consists of a number of star systems and star lanes
     """
-    def __init__(self, systems, lanes):
-        self.systems = systems
-        self.lanes = lanes
+    def __init__(self, galaxies):
+        self.galaxies = galaxies
+
+        self.systems = []
+        self.lanes = []
+        for galaxy in galaxies:
+            self.systems.extend(galaxy.systems)
+            self.lanes.extend(galaxy.lanes)
