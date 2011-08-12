@@ -18,11 +18,16 @@ class System(object):
         self.population = population
         self.lanes = {} # maps destination planet -> lane
 
-    def full_name(self):
+    def full_name(self, hide_population):
         if self.galaxy and self.galaxy.name:
-            return "%s %s" % (self.galaxy.name, self.name)
+            name = "%s %s" % (self.galaxy.name, self.name)
+        else:
+            name = self.name
 
-        return self.name
+        if hide_population:
+            return name
+        else:
+            return "%s (%s)" % (name, self.population)
 
 class Galaxy(object):
     """A galaxy is a loose grouping of star systems"""

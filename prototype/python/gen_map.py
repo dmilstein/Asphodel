@@ -117,17 +117,17 @@ class UniverseGenerator(object):
             lanes.append(StarLane(next_system, systems[-1]))
             systems.append(next_system)
 
-        # Bridge systems have some dead ends
-        for i in range(spec.extra_systems):
-            extra_system = self.generate_system(bridge_avg, bridge_spread)
-            lanes.append(StarLane(extra_system, random.choice(systems)))
-            systems.append(extra_system)
-
         # TODO: Support more than two galaxy connections per bridge?
         lanes.append(StarLane(
             systems[0], random.choice(galaxy_a.systems)))
         lanes.append(StarLane(
             systems[-1], random.choice(galaxy_b.systems)))
+
+        # Bridge systems have some dead ends
+        for i in range(spec.extra_systems):
+            extra_system = self.generate_system(bridge_avg, bridge_spread)
+            lanes.append(StarLane(extra_system, random.choice(systems)))
+            systems.append(extra_system)
 
         return Galaxy(None, systems, lanes)
 

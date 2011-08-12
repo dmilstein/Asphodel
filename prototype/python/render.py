@@ -22,13 +22,19 @@ _TEMPLATE = """graph universe {
 #                    d -> b;
 #                    }
 
-_SYSTEM_TEMPLATE = """\t"%(name)s (%(population)s)" -- "%(destination_name)s (%(destination_population)s)";"""
+_COLOR_TEMPLATE = """[color="#%s"]"""
+_SYSTEM_TEMPLATE = """\t"%(name)s" -- "%(destination_name)s" %(color)s;"""
 # possibly add [ label = "1" ]
-_GROUP_TEMPLATE = """\t"%(name)s (%(population)s)" [group="%(group)s"];"""
-_BRIDGE_TEMPLATE = """\t"%(name)s (%(population)s)" [shape=circle];"""
+_GROUP_TEMPLATE = """\t"%(name)s" [group="%(group)s"];"""
+_BRIDGE_TEMPLATE = """\t"%(name)s" [shape=circle];"""
 
 
-def render_universe(universe):
+def render_universe(universe, fog_of_war=False):
+    if fog_of_war: # We want to be able to hide data about the universe
+        color = _COLOR_TEMPLATE % "ffffff"
+    else:
+        color = ""
+
     visited = set()
     systems = []
     groups = []
@@ -38,13 +44,12 @@ def render_universe(universe):
         for system in galaxy.systems:
             if galaxy.name:
                 groups.append(_GROUP_TEMPLATE % {
-                    'name': system.full_name(),
-                    'population': system.population,
+                    'name': system.full_name(fog_of_war),
                     'group': galaxy_id,
                 })
             else:
                 bridges.append(_BRIDGE_TEMPLATE % {
-                    'name': system.full_name(),
+                    'name': system.full_name(fog_of_war),
                     'population': system.population,
                 })
 
@@ -55,10 +60,10 @@ def render_universe(universe):
                 visited.add(visit)
 
                 systems.append(_SYSTEM_TEMPLATE % {
-                    'name': system.full_name(),
-                    'population': system.population,
-                    'destination_name': destination.full_name(),
+                    'name': system.full_name(fog_of_war),
+                    'destination_name': destination.full_name(fog_of_war),
                     'destination_population': destination.population,
+                    'color': color,
                 })
 
     return _TEMPLATE % {
