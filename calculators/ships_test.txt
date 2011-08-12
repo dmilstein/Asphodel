@@ -1,0 +1,10 @@
+Alice
+5 Ship of the Line
+5 Ship of the Line
+2 Frigate
+
+Bob
+6 Ship of the Line
+1 Frigate
+1 Frigate
+1 Frigate

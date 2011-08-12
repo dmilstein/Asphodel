@@ -1,0 +1,201 @@
+Simplified Rules for First Round Playtesting
+8/11/2011
+
+Goal of the Game
+================
+
+Take over the galaxy by building up an empire and destroying the other
+player.
+
+
+At Start
+========
+
+The galaxy starts with a set of Planets, and both players can see the full
+map (they have good astronomical teams).
+
+Each player starts off by owning a single planet (and they know the location
+of the other player's start planet).  The planets are not "close" (so that
+each player has to build up something of an empire before they could
+consider wiping out their opponent).
+
+
+Star Lanes
+==========
+
+The most efficient way to move large ships between planets is by way of star
+lanes (building of which involves creating complex jump point machinery at
+each end).  Note: it *is* possible to move between star systems other ways,
+see below.
+
+Potential star lanes exist between some (but not all) pairs of planets.
+Those potential paths only becomes visible when a player reaches a planet at
+either end (with a scout or other ship).  Only the player who reaches the
+planet can see the potential star lane (it's a closely held secret of the
+imperial exploratory forces).  However, once built, everyone can see it
+(it's impossible to keep secret at that point).
+
+It costs 15 units to build a star lane.
+
+
+Properties of Planets
+=====================
+
+A planet has: a population.  The population of a planet is fixed (varies
+across planets, unknown at game start).
+
+Planets produce tax revenue in proportion to two things:
+
+ - Their population (0-10)
+
+ - The log (base 2) of the number of other planets within their empire that
+   they can reach by star lanes (the size of the connected-by-star-lanes
+   component of their empire)
+
+At start, two origin planets have a population of 8.  But all other planets
+discovered have varying degrees of habitability.
+
+The second one means that players have an incentive to connect large graphs
+of planets up by starlanes, and that other players can severely reduce tax
+revenue by taking over a key planet that forms a bridge between two
+connected components of someone's empire graph (this feels like a nice model
+of actual 19th century empires, where tiny islands in the middle of
+nowehere, like Mauritius, became incredibly valuable and hard-fought,
+because they sat astride major trade routes from Europe to the Orient).
+
+(Alternately, we could tie it to, not just the # of planets in a component,
+but the network diameter, which gives an incentive to build sprawling
+empires, which are easier to disrupt, and I kind of like that tension, but
+it may be hard for players to understand, without some cueing from the
+interface.)
+
+
+Technology
+==========
+
+There's a tech tree along 2 axes (with, for now, just points along each
+axis, maybe later there's specific, named, targets)
+
+ - Combat (ability for your ships to inflict damage on other ships +
+   planets, and to sustain damage in return)
+
+ - Range (how far your ships can travel in a single turn -- mostly along
+   starlanes, but for some ship classes, outside as well)
+
+Each player starts with a 1 for each.
+
+Each turn, players can invest in trying to improve either kind of tech. But
+the system is set up to strongly reward steady investment in tech over time,
+rather than one big investment all at once.  This is done by making the
+return on any single turn of investment exponentially decreasing as the size
+of the invesment goes up.  If you spend N units in a turn, your tech
+increases in proportion to log(N) (base 10).  In other words, spending 10
+moves you up 1 unit, but it takes 100 to move you up 2, and 1000 to move you
+up 3.  There is some randomness surrounding that, but that's the basic
+proportions.
+
+
+Ship Types
+==========
+There are four distinct types of ships (for all of the below, assume the
+current combat tech for a player is C, and the current range tech is R).
+All ships are built on your homeworld.
+
+ - Scouts (cost 20 units)
+
+These are fairly cheap, have no offense or defense, but can jump to planets
+without using starlanes.  How far they can jump is determined by the range
+tech axis.  They can also move very quickly along star lanes.
+
+Movement outside of starlanes: R
+Movement along starlanes: 2R
+Combat max: 0
+
+
+ - Colony Ships (cost 30 units)
+
+These can only travel along starlanes, have basically no offense or defense,
+but can colonize planets, taking ownership of them.
+
+Movement outside of starlanes: 0
+Movement along starlanes: R
+Combat max: 0 
+
+
+ - Frigates (cost 100 units)
+
+These are expensive, have modest offense, modest defense, but are able to
+move without using starlanes.  Like scouts, their distance is controlled by
+range, but they can't move as far as scouts.
+
+Movement outside of starlanes: R/3
+Movement along starlanes: 1.5 * R
+Combat max: C/3
+
+
+ - Ships of the Line (cost 200 units)
+
+These are expensive, can only move along star lanes, and have massively
+powerful offense and defense.
+
+Movement outside of starlanes: 0
+Movement along starlanes: R
+Combat max: C
+
+Cost: 200
+
+So players face a choice: build a highly mobile force of slightly weaker
+ships, or a sluggish but devastating force.
+
+For ships moving along star lanes, any two planets so connected are 1 unit
+apart.  So, basically, you can move all ship types quickly (though not
+instantly) within your empire graph.  And you can move specialized forces
+outside of the graph, much more slowly.
+
+
+Combat
+======
+
+If a player sends ships to a planet where the opponent has ships, a battle
+ensues.  It plays out the following way (without any input from the player
+once the battle has started).
+
+Combat proceeds in rounds.  The defender goes first.
+
+Each combat point represents a chance to do a point of damage to an opposing
+ship.  You have a 50/50 chance of doing damage with each point.
+
+Once a ship has sustained as many points of damage as its combat rating, it
+is dead.  Until that point, it fights at full strength.
+
+Damage is assigned to an opponent's smallest ships first.  Thus, if a single
+large ship with 5 combat points faces 5 small ships with 1 combat point
+apiece, the large ship will generally come out ahead, because it would
+continue to fight at 5 every turn, even as the opposing ships were gradually
+destroyed.
+
+
+What Happens During Each Player's Turn
+======================================
+
+ - Review updates from action started during last turn
+
+E.g. planets explored, star lanes completed, ships completed, tech
+investments paying off, colonies established, revenue received.
+
+Attacks by the opponent that took place.
+
+
+ - Move your ships around, scouting, launching attacks, starting colonies
+
+ - See battles play out
+
+ - Decide how to invest your revenue
+
+    - Tech R&D 
+
+    - Building ships 
+
+    - Building star lanes
+
+
