@@ -60,9 +60,9 @@ class UniverseGenerator(object):
         return System(name, population)
 
     def connect_systems(self, systems, connectivity):
-        linked = systems[:]
-        random.shuffle(linked)
-        unlinked = [linked.pop()]
+        unlinked = systems[:]
+        random.shuffle(unlinked)
+        linked = [unlinked.pop()]
         lanes = []
 
         # Use this to avoid double-connecting systems
