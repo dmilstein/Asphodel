@@ -41,7 +41,7 @@ class Player(object):
         """
         Run an attack against an opponent, reporting damage.
         """
-        print "Player %s attacking" % self.name
+        print "Player %s is engaging the enemy fleet" % self.name
         print
         time.sleep(1)
         for s in self.ships:
@@ -56,7 +56,7 @@ class Player(object):
             print
             if opponent.is_dead():
                 return
-        print "Player %s's turn is overt" % self.name
+        print "Player %s's turn is over" % self.name
         time.sleep(1)
 
     def receive_damage(self, points_damage):
