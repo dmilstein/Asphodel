@@ -1,12 +1,13 @@
 from uuid import uuid4
 
-_TEMPLATE = """graph universe {
+_TEMPLATE = '''graph universe {
+    size="8,11";    
     node [shape = doublecircle];
 %(groups)s
 %(bridges)s
 %(systems)s
 }
-"""
+'''
 
 
 # and makes an extra effort to avoid edge crossings. For example, the graph
@@ -22,11 +23,11 @@ _TEMPLATE = """graph universe {
 #                    d -> b;
 #                    }
 
-_COLOR_TEMPLATE = """[color="#%s"]"""
-_SYSTEM_TEMPLATE = """\t"%(name)s" -- "%(destination_name)s" %(color)s;"""
+_COLOR_TEMPLATE = '[color="#%s"]'
+_SYSTEM_TEMPLATE = '    "%(name)s" -- "%(destination_name)s" %(color)s;'
 # possibly add [ label = "1" ]
-_GROUP_TEMPLATE = """\t"%(name)s" [group="%(group)s"];"""
-_BRIDGE_TEMPLATE = """\t"%(name)s" [shape=circle];"""
+_GROUP_TEMPLATE = '    "%(name)s" [group="%(group)s" href="http://test.com/"];'
+_BRIDGE_TEMPLATE = '    "%(name)s" [shape=circle href="http://test.com"];'
 
 
 def render_universe(universe, fog_of_war=False):
