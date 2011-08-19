@@ -25,5 +25,4 @@ def invest(cur_level, amount):
 
 if __name__ == '__main__':
     _ignore, cur_level, amount = sys.argv
-    for _i in range(10):
-        print invest(float(cur_level), int(amount)) 
+    print invest(float(cur_level), int(amount)) 
