@@ -1,10 +1,4 @@
 -*-outline-*-
 
-* x Add x/y loc to models
-* x sync the db
-* x commit to git
-* x write temp code to create an image of list of planets
-* commit + push
-* write a view display planets in a given game
-* create a field of planets via some init
-* build paths between stars
+** Need to add some onclick handler to the map
+Or, use jQuery like a sane person and attach it onload.

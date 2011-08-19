@@ -1,0 +1,25 @@
+<html>
+<head>
+
+<script type="text/javascript">
+function helloPlanet(event) {
+  document.getElementById('planet-info').innerHTML = "Hello, " + event.toElement.title;
+  return false;
+}
+</script>
+
+</head>
+<body>
+<img src="universe_image.png" id="universe" usemap="#universe" border=1 align=left>
+
+
+<div id="planet-info">
+Hello, Asphodel world.
+</div>
+
+
+{% include "asphodel/universe_edited.cmapx" %}
+
+
+</body>
+

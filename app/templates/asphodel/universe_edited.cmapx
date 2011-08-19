@@ -1,0 +1,45 @@
+<map id="universe" name="universe" onClick="return(helloPlanet(event));">
+
+<area shape="circle" id="node1" href="http://test.com/" title="Red Muscida (23)" alt="" coords="72,40,36"/>
+<area shape="circle" id="node2" href="http://test.com/" title="Red Regulus (22)" alt="" coords="49,135,35"/>
+<area shape="circle" id="node3" href="http://test.com/" title="Red Asterope (19)" alt="" coords="72,237,36"/>
+<area shape="circle" id="node21" href="http://test.com" title="Alderamin (4)" alt="" coords="72,339,27"/>
+<area shape="circle" id="node4" href="http://test.com/" title="Blue Muliphen (27)" alt="" coords="698,40,38"/>
+<area shape="circle" id="node5" href="http://test.com/" title="Blue Aldhibah (27)" alt="" coords="673,135,38"/>
+<area shape="circle" id="node6" href="http://test.com/" title="Blue Alnath (25)" alt="" coords="698,237,33"/>
+<area shape="circle" id="node25" href="http://test.com" title="Segin (5)" alt="" coords="698,339,19"/>
+<area shape="circle" id="node7" href="http://test.com/" title="Alpha Hoedus I (20)" alt="" coords="274,237,40"/>
+<area shape="circle" id="node9" href="http://test.com/" title="Alpha Nash (13)" alt="" coords="237,339,33"/>
+<area shape="circle" id="node11" href="http://test.com/" title="Alpha Alnair (20)" alt="" coords="283,433,35"/>
+<area shape="circle" id="node8" href="http://test.com/" title="Alpha Rotanev (17)" alt="" coords="189,237,38"/>
+<area shape="circle" id="node10" href="http://test.com/" title="Alpha Zaniah (14)" alt="" coords="189,433,36"/>
+<area shape="circle" id="node12" href="http://test.com/" title="Alpha Canopus (11)" alt="" coords="278,524,39"/>
+<area shape="circle" id="node22" href="http://test.com" title="Diphda (4)" alt="" coords="123,433,22"/>
+<area shape="circle" id="node26" href="http://test.com" title="Atik (1)" alt="" coords="652,433,17"/>
+<area shape="circle" id="node38" href="http://test.com" title="Wezen (0)" alt="" coords="351,433,21"/>
+<area shape="circle" id="node31" href="http://test.com" title="Alchiba (5)" alt="" coords="330,606,23"/>
+<area shape="circle" id="node13" href="http://test.com/" title="Lambda Angetenar (23)" alt="" coords="577,237,45"/>
+<area shape="circle" id="node14" href="http://test.com/" title="Lambda Fornacis (39)" alt="" coords="502,339,42"/>
+<area shape="circle" id="node16" href="http://test.com/" title="Lambda Avior (50)" alt="" coords="589,433,38"/>
+<area shape="circle" id="node29" href="http://test.com" title="Rasalgethi (0)" alt="" coords="502,433,27"/>
+<area shape="circle" id="node15" href="http://test.com/" title="Lambda Cygni (19)" alt="" coords="589,339,39"/>
+<area shape="circle" id="node17" href="http://test.com/" title="Mu Beid (38)" alt="" coords="383,40,28"/>
+<area shape="circle" id="node19" href="http://test.com/" title="Mu Shemali (37)" alt="" coords="406,135,34"/>
+<area shape="circle" id="node20" href="http://test.com/" title="Mu Rasalhague (54)" alt="" coords="360,237,40"/>
+<area shape="circle" id="node18" href="http://test.com/" title="Mu Vindemiatrix (32)" alt="" coords="307,135,42"/>
+<area shape="circle" id="node36" href="http://test.com" title="Mesarthim (0)" alt="" coords="435,237,27"/>
+<area shape="circle" id="node23" href="http://test.com" title="Syrma (0)" alt="" coords="22,433,21"/>
+<area shape="circle" id="node24" href="http://test.com" title="Propus (0)" alt="" coords="72,433,21"/>
+<area shape="circle" id="node27" href="http://test.com" title="Zosma (5)" alt="" coords="698,433,21"/>
+<area shape="circle" id="node28" href="http://test.com" title="Altarf (0)" alt="" coords="747,433,20"/>
+<area shape="circle" id="node30" href="http://test.com" title="Alsafi (2)" alt="" coords="390,524,20"/>
+<area shape="circle" id="node32" href="http://test.com" title="Algieba (0)" alt="" coords="562,524,23"/>
+<area shape="circle" id="node34" href="http://test.com" title="Prima Giedi (0)" alt="" coords="502,524,30"/>
+<area shape="circle" id="node33" href="http://test.com" title="Azha (3)" alt="" coords="536,606,19"/>
+<area shape="circle" id="node35" href="http://test.com" title="Alpheratz (2)" alt="" coords="589,606,26"/>
+<area shape="circle" id="node37" href="http://test.com" title="Wezn (3)" alt="" coords="358,339,20"/>
+<area shape="circle" id="node39" href="http://test.com" title="Praecipua (2)" alt="" coords="426,339,26"/>
+<area shape="circle" id="node40" href="http://test.com" title="Auva (0)" alt="" coords="344,524,19"/>
+<area shape="circle" id="node41" href="http://test.com" title="Pherkad (1)" alt="" coords="441,524,23"/>
+<area shape="circle" id="node42" href="http://test.com" title="Betelgeuse (0)" alt="" coords="441,606,28"/>
+</map>
